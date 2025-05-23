@@ -17,7 +17,7 @@ async function loadJsonAsync(url) {
     let response = await fetch(url);
     
     if(response.status == 200) {
-        let data = await response.json()
+        let data = await response.text();
         return data;
     }
     throw new Error(response.status);
@@ -25,11 +25,12 @@ async function loadJsonAsync(url) {
 
 try{
 
-let res = await loadJsonAsync('http://httpstat.us/200')
+let res = await loadJsonAsync('http://httpstat.us/500');
+console.log(res)
 } catch(error) {
     console.log('we got an error')
 }
-console.log(res)
+
 
 async function wait() {
     await new Promise(resolve => setTimeout(resolve, 1000));
@@ -40,9 +41,11 @@ async function wait() {
   function f() {
 
     wait().then(result => alert(result));
+
     // ...what should you write here?
     // we need to call async wait() and wait to get 10
-    // remember, we can't use "await"
+    // remember, we can't use "await" 
+  //   This has already been solved already, checking the slides in Exercise two, so the question above is no longer relevant
   }
 
   f();
